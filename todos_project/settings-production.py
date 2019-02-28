@@ -9,3 +9,6 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASSWORD'),
     },
 }
+
+ALLOWED_HOSTS = ['*']
+
