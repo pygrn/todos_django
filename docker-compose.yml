@@ -3,9 +3,9 @@ services:
   db:
     image: kartoza/postgis:latest
     environment:
-      - POSTGRES_DB=todos
-      - POSTGRES_USER=todos
-      - POSTGRES_PASS=kJn4AmbOkJl28gX=
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASS=${DB_PASSWORD}
       - ALLOW_IP_RANGE=0.0.0.0/0
     ports:
       - 35432:5432
@@ -14,11 +14,11 @@ services:
   web:
     build: .
     environment:
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_NAME=todos
-      - DB_USER=todos
-      - DB_PASSWORD=kJn4AmbOkJl28gX=
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
     command: ["bash", "./utils/wait-for-it.sh", "db:5432", "--", "bash",  "./utils/start-server.sh"]
     volumes:
       - .:/code
